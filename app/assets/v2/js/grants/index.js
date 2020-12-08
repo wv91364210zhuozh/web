@@ -52,12 +52,10 @@ $(document).ready(() => {
   });
 
   toggleStyle = function (style) {
-    let banner
-    if (style.bg) {
-      banner = `url("${style.bg }") center top / ${style.size || ''} ${style.color || ''} no-repeat`
-    } else {
-      banner = `url("${ style.banner_image }") center  no-repeat`
-    }
+  let banner = style.bg ?
+      `url("${style.bg }") center top / ${style.size || ''} ${style.color || ''} no-repeat`:
+      `url("${ style.banner_image }") center no-repeat`
+    
     $('#grant-hero-img').css("background", banner)
     if (style.background_image) {
       $("#grant-background-image-mount-point").css("background-image", style.background_image)
@@ -138,7 +136,6 @@ Vue.component('grant-sidebar', {
           }
         }
         fetchGrants(this.page)
-        // document.location.href = target;
       }
     },
     searchKeyword: function() {
@@ -311,9 +308,7 @@ if (document.getElementById('grants-showcase')) {
         }
         let current_style
         if (filters.type !== null && filters.type !== undefined) {
-          if (!current_style) {
-            current_style = document.all_type_styles[filters.type]
-          }
+          current_style = document.all_type_styles[filters.type]
           this.current_type = filters.type;
           if (this.current_type === 'collections') {
             this.collection_id = null;
