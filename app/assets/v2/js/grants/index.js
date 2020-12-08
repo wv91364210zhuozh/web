@@ -350,10 +350,7 @@ if (document.getElementById('grants-showcase')) {
         this.page = 1;
         this.setCurrentType(this.current_type);
         this.fetchGrants(this.page);
-        const regex_style = document.all_routing_policies.find(policy => {
-          console.log(policy.url_pattern, window.location.href,  new RegExp(policy.url_pattern).test(window.location.href))
-          return new RegExp(policy.url_pattern).test(window.location.href)
-        })
+        const regex_style = document.all_routing_policies.find(policy => new RegExp(policy.url_pattern).test(window.location.href))
         toggleStyle(regex_style || current_style)
 
       },
